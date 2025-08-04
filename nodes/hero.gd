@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal hero_collision
+
 @export var physics_unit = 100
 # Horizontal movement move_speed
 @export var move_speed = 2.0
@@ -31,8 +33,10 @@ enum State {
 @onready var animation = $AnimationPlayer
 func _ready():
 	# Set initial jump state
+	hero_collision.connect(_on_hero_collision)
 	is_jumping = false
 	animation.play("idle")
+	add_to_group("hero")
 
 func _physics_process(delta):
 	# Handle jump input timing
@@ -92,6 +96,7 @@ func _physics_process(delta):
 
 	# Apply movement
 	move_and_slide()
+	check_collision()
 
 enum Face {
 	LEFT,
@@ -108,3 +113,15 @@ func _update_face(dir:float):
 		flip()
 func flip():
 	scale.x = -1
+
+func check_collision():
+	# 检查碰撞
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider and collider.is_in_group("enemy"):
+			emit_signal("hero_collision")
+
+func _on_hero_collision():
+	print("hero collision")
+	queue_free()
