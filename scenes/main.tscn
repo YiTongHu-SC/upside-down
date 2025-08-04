@@ -7,8 +7,7 @@
 
 [node name="Hero" parent="." instance=ExtResource("1_0wfyh")]
 position = Vector2(311, 443)
-jump_velocity = -600.0
-min_jump_velocity = -300.0
+jump_upward_acceleration = -2000.0
 
 [node name="Level" type="Node2D" parent="."]
 

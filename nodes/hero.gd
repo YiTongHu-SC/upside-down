@@ -3,47 +3,61 @@ extends CharacterBody2D
 # Horizontal movement speed
 @export var speed = 200.0
 
-# Jump velocity (negative because up is negative in Godot)
-@export var jump_velocity = -400.0
-
-# Gravity value
-@export var gravity = 1000.0
-
-# Variable jump parameters
+# Jump parameters
+@export var max_jump_velocity = -400.0
 @export var min_jump_velocity = -200.0
-@export var jump_buffer_time = 0.1
-@export var coyote_time = 0.1
+@export var jump_upward_acceleration = 2000.0  # Acceleration while holding jump
+@export var gravity = 1000.0
+@export var jump_gravity = 1000.0  # Gravity when not holding jump
+@export var release_gravity = 1500.0  # Gravity when releasing jump button
+
+# Timing parameters for variable jump
+const MIN_JUMP_TIME = 0.05  # 50ms for minimum jump
+const MAX_JUMP_TIME = 0.2   # 200ms for maximum jump
 
 # Variables to track jump input timing
 var jump_input_time = 0.0
 var jump_key_held = false
+var is_jumping = false
 
 func _physics_process(delta):
-	# Apply gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	else:
-		# Reset jump input when on floor
-		jump_input_time = 0.0
-	
 	# Handle jump input timing
-	if Input.is_action_pressed("JUMP"):
-		if Input.is_action_just_pressed("JUMP"):
-			jump_key_held = true
-			jump_input_time = 0.0
-		elif jump_key_held:
-			jump_input_time += delta
-	elif Input.is_action_just_released("JUMP"):
+	if Input.is_action_just_pressed("JUMP") and is_on_floor():
+		jump_key_held = true
+		jump_input_time = 0.0
+		is_jumping = true
+		
+		# Immediate minimal jump to avoid input lag
+		velocity.y = min_jump_velocity
+	
+	if Input.is_action_just_released("JUMP"):
 		jump_key_held = false
 	
-	# Handle jump - higher jump when key held longer
-	if jump_key_held and is_on_floor():
-		# Calculate jump force based on how long the key has been held
-		var jump_factor = clamp(jump_input_time / 0.3, 0.0, 1.0)
-		velocity.y = lerp(jump_velocity, min_jump_velocity, jump_factor)
-	elif not jump_key_held and not is_on_floor() and velocity.y < min_jump_velocity:
-		# Limit jump height when key is released early
-		velocity.y = min_jump_velocity
+	# Apply jump acceleration while holding jump and within time window
+	if is_jumping and jump_key_held and jump_input_time < MAX_JUMP_TIME:
+		# Apply upward acceleration while holding jump button
+		velocity.y += jump_upward_acceleration * delta
+		print("Jump:", jump_input_time)
+	
+	# Update jump timer
+	if is_jumping:
+		jump_input_time += delta
+		
+		# Stop accelerating when time is up
+		if jump_input_time >= MAX_JUMP_TIME:
+			is_jumping = false
+	
+	# Apply gravity based on jump button state
+	if not is_on_floor():
+		if jump_key_held:
+			velocity.y += jump_gravity * delta
+			print("Jump hold:", jump_input_time)
+		else:
+			# print("Jump release:", jump_input_time)
+			velocity.y += release_gravity * delta
+	# else:
+	# 	# Reset jump state when on floor
+	# 	is_jumping = false
 	
 	# Handle horizontal movement
 	var direction = Input.get_axis("MOVE_LEFT", "MOVE_RIGHT")
