@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bnogvt7gfe55x"]
+
+[ext_resource type="FontFile" uid="uid://den8b07forq48" path="res://font/PaperHand/PaperHand-Regular-Black.ttf" id="1_470mv"]
+
+[resource]
+default_font = ExtResource("1_470mv")
