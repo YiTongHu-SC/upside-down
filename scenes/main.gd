@@ -19,8 +19,6 @@ var last_point: Vector2
 var hero_pos: Vector2
 
 func _ready() -> void:
-	last_point = start_level.position
-	hero_pos = hero_spawn_at.position
 	restart_game()
 
 func _generate_new_level():
@@ -47,6 +45,8 @@ func change_mode():
 	GameDataGlobal.change_mode()
 
 func restart_game():
+	last_point = start_level.position
+	hero_pos = hero_spawn_at.position
 	GameDataGlobal.game_paused = true
 	start_game_panel.show()
 	game_over_panel.hide()
