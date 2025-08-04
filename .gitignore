@@ -1,0 +1,49 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot engine specific
+/.godot/
+/export/
+/bin/
+/*.export/
+/*.gdip/
+/*.gden/
+/*.tmp
+*.log
+*.obj
+*.pdb
+*.tminfo
+*.meta
+*.import
+*.remap
+
+# Build artifacts
+/build/
+
+# VSCode specific
+/.vscode/
+/.DS_Store
+/Thumbs.db
+
+# Dependency management
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+
+# Generated files
+/Generated/
+/obj/
+/bin/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.cache
+*.swp
+
+# Editor backup files
+*~
+*.bak
+*.orig
