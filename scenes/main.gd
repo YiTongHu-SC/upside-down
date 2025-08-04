@@ -18,10 +18,12 @@ func _generate_new_level():
 	print("generating new level")
 	var level = level_pk.instantiate()
 	level_socket.add_child(level)
+	level.set_enemy(enemy)
 	level.position = last_point + Vector2(width, 0)
 	last_point = level.position
 
 func _physics_process(_delta: float) -> void:
+	if not hero: return
 	if hero.position.x > last_point.x - checkpoint_width:
 		_generate_new_level()
 	pass

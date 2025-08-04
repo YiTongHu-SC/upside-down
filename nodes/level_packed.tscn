@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=4 uid="uid://dgq1g3d3xvpjf"]
+[gd_scene load_steps=3 format=4 uid="uid://dgq1g3d3xvpjf"]
 
 [ext_resource type="TileSet" uid="uid://xk2hqrsam3si" path="res://tile_map/tile.tres" id="1_j3x5o"]
+[ext_resource type="Script" uid="uid://cdsu4y48ldf3e" path="res://nodes/level_packed.gd" id="1_x432i"]
 
 [node name="LevelPacked" type="Node2D"]
+script = ExtResource("1_x432i")
 
 [node name="Level" type="Node2D" parent="."]
 use_parent_material = true
