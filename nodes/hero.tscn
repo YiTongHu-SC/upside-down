@@ -1,12 +1,87 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs1xrjb27dvn0"]
+[gd_scene load_steps=10 format=3 uid="uid://bs1xrjb27dvn0"]
 
+[ext_resource type="Material" uid="uid://c53od883rn46n" path="res://materials/hero_mat.tres" id="1_u83nc"]
 [ext_resource type="Script" uid="uid://b0i2nhrdyqgoj" path="res://nodes/hero.gd" id="1_y8yjb"]
 [ext_resource type="Texture2D" uid="uid://38nbiiyriwv2" path="res://images/Hero.png" id="2_y8yjb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(42, 67)
 
+[sub_resource type="Animation" id="Animation_u83nc"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1dsar"]
+resource_name = "walk"
+length = 0.400003
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.233333, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.95), Vector2(1, 1), Vector2(0.9, 1.05), Vector2(1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4kahr"]
+resource_name = "jump"
+length = 0.500003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.9), Vector2(0.95, 1.1), Vector2(0.95, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5nhaj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0s01v"]
+_data = {
+&"RESET": SubResource("Animation_5nhaj"),
+&"idle": SubResource("Animation_u83nc"),
+&"jump": SubResource("Animation_4kahr"),
+&"walk": SubResource("Animation_1dsar")
+}
+
 [node name="Hero" type="CharacterBody2D"]
+material = ExtResource("1_u83nc")
 platform_wall_layers = 1
 script = ExtResource("1_y8yjb")
 
@@ -15,4 +90,12 @@ position = Vector2(1, 13.5)
 shape = SubResource("RectangleShape2D_sgp6g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, 45)
 texture = ExtResource("2_y8yjb")
+offset = Vector2(0, -45)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0s01v")
+}

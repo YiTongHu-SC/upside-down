@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cyap16m41y5tj"]
+
+[ext_resource type="Shader" uid="uid://b2421io6si1py" path="res://shaders/twisted.gdshader" id="1_uytuc"]
+[ext_resource type="Texture2D" uid="uid://cfc68emdm7axf" path="res://images/noiseTexture.png" id="2_iganx"]
+
+[resource]
+shader = ExtResource("1_uytuc")
+shader_parameter/brightness = 1.0
+shader_parameter/NOISE_TEXTURE = ExtResource("2_iganx")
+shader_parameter/strength = 0.0
+shader_parameter/uv_scaling = 0.0
+shader_parameter/movement_speed = 0.0
+shader_parameter/strength_micro = 2.3
+shader_parameter/uv_scaling_micro = 2.8
+shader_parameter/movement_speed_micro = 0.25

@@ -20,6 +20,12 @@ var jump_input_time = 0.0
 var jump_key_held = false
 var is_jumping = false
 
+@onready var animation = $AnimationPlayer
+func _ready():
+	# Set initial jump state
+	is_jumping = false
+	animation.play("idle")
+
 func _physics_process(delta):
 	# Handle jump input timing
 	if Input.is_action_just_pressed("JUMP") and is_on_floor():
