@@ -7,6 +7,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
 size = Vector2(42, 67)
 
+[sub_resource type="Animation" id="Animation_5nhaj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_u83nc"]
 resource_name = "idle"
 length = 1.2
@@ -22,23 +37,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_1dsar"]
-resource_name = "walk"
-length = 0.400003
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.233333, 0.333333, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.1, 0.95), Vector2(1, 1), Vector2(0.9, 1.05), Vector2(1, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4kahr"]
@@ -57,8 +55,10 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(1.2, 0.9), Vector2(0.95, 1.1), Vector2(0.95, 1.1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_5nhaj"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_1dsar"]
+resource_name = "walk"
+length = 0.400003
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,10 +66,10 @@ tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.233333, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1.1, 0.95), Vector2(1, 1), Vector2(0.9, 1.05), Vector2(1, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0s01v"]

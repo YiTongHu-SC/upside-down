@@ -26,6 +26,7 @@ enum State {
 	JUMP
 }
 
+@onready var facing = Face.RIGHT
 @onready var current_state = State.IDLE
 @onready var animation = $AnimationPlayer
 func _ready():
@@ -76,11 +77,13 @@ func _physics_process(delta):
 	
 	# Handle horizontal movement
 	var direction = Input.get_axis("MOVE_LEFT", "MOVE_RIGHT")
+	print("direction", direction)
 	if direction:
 		if current_state != State.WALK && not is_jumping:
 			animation.play("walk")
 			current_state = State.WALK
 		velocity.x = direction * move_speed * physics_unit
+		_update_face(direction)
 	else:
 		if current_state != State.IDLE && not is_jumping:
 			animation.play("idle")
@@ -90,3 +93,19 @@ func _physics_process(delta):
 
 	# Apply movement
 	move_and_slide()
+
+enum Face {
+	LEFT,
+	RIGHT
+}
+
+func _update_face(dir:float):
+	## check facing
+	if dir < -0.5 && facing != Face.LEFT:
+		facing = Face.LEFT
+		flip()
+	elif dir > 0.5 && facing != Face.RIGHT:
+		facing = Face.RIGHT
+		flip()
+func flip():
+	scale.x = -1
