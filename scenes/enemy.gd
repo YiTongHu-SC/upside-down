@@ -21,3 +21,4 @@ func _physics_process(delta):
 
 func reset():
 	position = init_pos
+	velocity.x = start_speed;
