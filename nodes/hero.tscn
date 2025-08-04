@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://bs1xrjb27dvn0"]
 
-[ext_resource type="Texture2D" uid="uid://h1bnnrqsc3iv" path="res://kenney_new-platformer-pack-1.0/Sprites/Characters/Default/character_green_front.png" id="1_nb7ox"]
 [ext_resource type="Script" uid="uid://b0i2nhrdyqgoj" path="res://nodes/hero.gd" id="1_y8yjb"]
+[ext_resource type="Texture2D" uid="uid://38nbiiyriwv2" path="res://images/Hero.png" id="2_y8yjb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
-size = Vector2(41, 72)
+size = Vector2(42, 67)
 
 [node name="Hero" type="CharacterBody2D"]
+platform_wall_layers = 1
 script = ExtResource("1_y8yjb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 26)
+position = Vector2(1, 13.5)
 shape = SubResource("RectangleShape2D_sgp6g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_nb7ox")
+texture = ExtResource("2_y8yjb")
