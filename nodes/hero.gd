@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal hero_collision
+signal on_upside_down(value: bool)
 
 @export var physics_unit = 100
 # Horizontal movement move_speed
@@ -28,9 +29,11 @@ enum State {
 	JUMP
 }
 
+@onready var upside_down: bool = false
 @onready var facing = Face.RIGHT
 @onready var current_state = State.IDLE
 @onready var animation = $AnimationPlayer
+
 func _ready():
 	# Set initial jump state
 	hero_collision.connect(_on_hero_collision)
@@ -39,6 +42,10 @@ func _ready():
 	add_to_group("hero")
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("SWITCH"):
+		upside_down = !upside_down
+		on_upside_down.emit(upside_down)
+		pass
 	# Handle jump input timing
 	if Input.is_action_just_pressed("JUMP") and is_on_floor():
 		jump_key_held = true
@@ -103,7 +110,7 @@ enum Face {
 	RIGHT
 }
 
-func _update_face(dir:float):
+func _update_face(dir: float):
 	## check facing
 	if dir < -0.5 && facing != Face.LEFT:
 		facing = Face.LEFT
