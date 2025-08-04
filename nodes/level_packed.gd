@@ -3,8 +3,14 @@ extends Node2D
 const kill_distance = 1920
 var enemy: Node2D = null
 
+@onready var init_exist = true
+
+func _ready():
+	GameDataGlobal.on_game_restart.connect(reset)
+
 func set_enemy(target):
 	enemy = target
+	init_exist = false
 
 ## 自动回收
 func _physics_process(_delta: float) -> void:
@@ -13,3 +19,8 @@ func _physics_process(_delta: float) -> void:
 		var self_pos = global_position.x
 		if enemy_pos - self_pos > kill_distance:
 			queue_free()
+
+func reset():
+	if not init_exist:
+		queue_free()
+	pass

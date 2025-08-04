@@ -5,6 +5,11 @@ extends Camera2D
 @export var right_threshold: float = 300.0
 @export var left_threshold: float = 100.0
 
+var init_pos: Vector2
+
+func _ready():
+	init_pos = position
+	GameDataGlobal.on_game_restart.connect(reset)
 ## 相机跟随
 func _process(_delta):
 	if follow_target:
@@ -25,3 +30,9 @@ func _process(_delta):
 		# 在垂直方向上保持当前位置不变
 	if Input.is_action_just_pressed("SWITCH"):
 		scale.y = -1
+
+func reset():
+	position = init_pos
+
+func set_target(target):
+	follow_target = target

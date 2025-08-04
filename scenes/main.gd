@@ -1,18 +1,27 @@
 extends Node2D
 
+
+@export var hero_pk: PackedScene
+@export var hero_socket: Node2D
 @export var level_pk: PackedScene
 @export var level_socket: Node2D
 @export var width: int = 1920
-@export var hero: Node2D
-@export var enemy: Node2D
+@export var enemy: CharacterBody2D
 @export var start_level: Node2D
 @export var checkpoint_width: int = 0
+@export var start_game_panel: Container
+@export var game_over_panel: Container
+@export var hero_spawn_at: Node2D
+@export var camera: Camera2D
 
+var hero: CharacterBody2D
 var last_point: Vector2
+var hero_pos: Vector2
 
 func _ready() -> void:
 	last_point = start_level.position
-	print("last point: ", last_point)
+	hero_pos = hero_spawn_at.position
+	restart_game()
 
 func _generate_new_level():
 	print("generating new level")
@@ -27,3 +36,24 @@ func _physics_process(_delta: float) -> void:
 	if hero.position.x > last_point.x - checkpoint_width:
 		_generate_new_level()
 	pass
+
+func start_game():
+	GameDataGlobal.game_paused = false
+	start_game_panel.hide()
+	game_over_panel.show()
+	game_over_panel.modulate.a = 0
+
+func change_mode():
+	GameDataGlobal.change_mode()
+
+func restart_game():
+	GameDataGlobal.game_paused = true
+	start_game_panel.show()
+	game_over_panel.hide()
+	if hero:
+		hero.kill_self()
+	hero = hero_pk.instantiate()
+	hero_socket.add_child(hero)
+	hero.position = hero_pos
+	camera.set_target(hero)
+	GameDataGlobal.on_game_restart.emit()

@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-signal hero_collision
-signal on_upside_down(value: bool)
-
 @export var physics_unit = 100
 # Horizontal movement move_speed
 @export var move_speed = 2.0
@@ -29,20 +26,24 @@ enum State {
 	JUMP
 }
 
+@onready var is_dead = false
 @onready var upside_down: bool = false
 @onready var facing = Face.RIGHT
 @onready var current_state = State.IDLE
 @onready var animation = $AnimationPlayer
 @onready var gravity_dir = 1
-
+var init_pos: Vector2
 func _ready():
+	init_pos = position
+	GameDataGlobal.on_game_restart.connect(reset)
 	# Set initial jump state
-	hero_collision.connect(_on_hero_collision)
 	is_jumping = false
 	animation.play("idle")
 	add_to_group("hero")
 
 func _physics_process(delta):
+	if GameDataGlobal.game_paused: return
+
 	if Input.is_action_just_pressed("SWITCH"):
 		upside_down = !upside_down
 		gravity_dir = - gravity_dir
@@ -50,7 +51,7 @@ func _physics_process(delta):
 		flip_y()
 		# 给一个大速度
 		velocity.y = switch_jump_velocity * physics_unit * gravity_dir
-		on_upside_down.emit(upside_down)
+		GameDataGlobal.on_upside_down.emit(upside_down)
 		pass
 
 	# Handle jump input timing
@@ -133,13 +134,26 @@ func flip_y():
 	scale.y *= -1
 
 func check_collision():
+	if GameDataGlobal.game_paused: return
 	# 检查碰撞
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider and collider.is_in_group("enemy"):
-			emit_signal("hero_collision")
+			if is_dead: return
+			_on_hero_collision()
+
 
 func _on_hero_collision():
+	is_dead = true
 	print("hero collision")
+	GameDataGlobal.on_game_over.emit()
+	queue_free()
+
+func reset():
+	print("hero reset")
+	pass
+
+func kill_self():
+	print("hero kill self dead")
 	queue_free()
