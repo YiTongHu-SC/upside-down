@@ -13,7 +13,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
 shader = ExtResource("9_85g3d")
-shader_parameter/upside_down = true
+shader_parameter/upside_down = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
 bg_color = Color(0.11, 0.11, 0.11, 1)
@@ -38,12 +38,13 @@ position = Vector2(1920, 0)
 position = Vector2(1018, 548)
 collision_layer = 3
 collision_mask = 3
+platform_wall_layers = 0
 physics_unit = 200
+switch_jump_velocity = 10
 
 [node name="Enemy" parent="." instance=ExtResource("4_tbgi4")]
 position = Vector2(-455, 569)
 collision_layer = 2
-collision_mask = 2
 acceleration = 0.6
 max_speed = 8.0
 

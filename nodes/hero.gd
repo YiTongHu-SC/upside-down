@@ -8,7 +8,7 @@ signal on_upside_down(value: bool)
 @export var move_speed = 2.0
 @export var friction = 10.0
 # Jump parameters
-# @export var max_jump_velocity = -400.0
+@export var switch_jump_velocity = 5
 @export var min_jump_velocity = 2.0
 @export var jump_upward_acceleration = 20.0 # Acceleration while holding jump
 @export var jump_gravity = 10.0 # Gravity when not holding jump
@@ -33,6 +33,7 @@ enum State {
 @onready var facing = Face.RIGHT
 @onready var current_state = State.IDLE
 @onready var animation = $AnimationPlayer
+@onready var gravity_dir = 1
 
 func _ready():
 	# Set initial jump state
@@ -44,8 +45,14 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("SWITCH"):
 		upside_down = !upside_down
+		gravity_dir = - gravity_dir
+		up_direction = Vector2(0, -gravity_dir)
+		flip_y()
+		# 给一个大速度
+		velocity.y = switch_jump_velocity * physics_unit * gravity_dir
 		on_upside_down.emit(upside_down)
 		pass
+
 	# Handle jump input timing
 	if Input.is_action_just_pressed("JUMP") and is_on_floor():
 		jump_key_held = true
@@ -55,7 +62,7 @@ func _physics_process(delta):
 		current_state = State.JUMP
 
 		# Immediate minimal jump to avoid input lag
-		velocity.y = - min_jump_velocity * physics_unit
+		velocity.y = - min_jump_velocity * physics_unit * gravity_dir
 	
 	if Input.is_action_just_released("JUMP"):
 		jump_key_held = false
@@ -63,7 +70,7 @@ func _physics_process(delta):
 	# Apply jump acceleration while holding jump and within time window
 	if is_jumping and jump_key_held and jump_input_time < MAX_JUMP_TIME:
 		# Apply upward acceleration while holding jump button
-		velocity.y -= jump_upward_acceleration * physics_unit * delta
+		velocity.y -= jump_upward_acceleration * physics_unit * delta * gravity_dir
 		# print("Jump:", jump_input_time)
 	
 	# Update jump timer
@@ -77,11 +84,11 @@ func _physics_process(delta):
 	# Apply gravity based on jump button state
 	if not is_on_floor():
 		if jump_key_held:
-			velocity.y += jump_gravity * physics_unit * delta
+			velocity.y += jump_gravity * physics_unit * delta * gravity_dir
 			# print("Jump hold:", jump_input_time)
 		else:
 			# print("Jump release:", jump_input_time)
-			velocity.y += release_gravity * physics_unit * delta
+			velocity.y += release_gravity * physics_unit * delta * gravity_dir
 	# else:
 	# 	# Reset jump state when on floor
 	# 	is_jumping = false
@@ -114,12 +121,16 @@ func _update_face(dir: float):
 	## check facing
 	if dir < -0.5 && facing != Face.LEFT:
 		facing = Face.LEFT
-		flip()
+		flip_x()
 	elif dir > 0.5 && facing != Face.RIGHT:
 		facing = Face.RIGHT
-		flip()
-func flip():
+		flip_x()
+
+func flip_x():
 	scale.x = -1
+
+func flip_y():
+	scale.y *= -1
 
 func check_collision():
 	# 检查碰撞
