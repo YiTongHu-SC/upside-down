@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var physics_unit = 100
 # Horizontal movement move_speed
 @export var move_speed = 2.0
-
+@export var friction = 10.0
 # Jump parameters
 # @export var max_jump_velocity = -400.0
 @export var min_jump_velocity = 2.0
@@ -77,7 +77,6 @@ func _physics_process(delta):
 	
 	# Handle horizontal movement
 	var direction = Input.get_axis("MOVE_LEFT", "MOVE_RIGHT")
-	print("direction", direction)
 	if direction:
 		if current_state != State.WALK && not is_jumping:
 			animation.play("walk")
@@ -89,7 +88,7 @@ func _physics_process(delta):
 			animation.play("idle")
 			current_state = State.IDLE
 		# Apply friction when no input
-		velocity.x = move_toward(velocity.x, 0, move_speed * physics_unit)
+		velocity.x = move_toward(velocity.x, 0, friction * physics_unit * delta)
 
 	# Apply movement
 	move_and_slide()

@@ -1,10 +1,11 @@
-extends Sprite2D
+extends CharacterBody2D
 
-var acceleration = 100
-@onready var velocity: Vector2 = Vector2.ZERO
+@export var physics_unit: float = 100
+@export var acceleration: float = 1
+@export var max_speed: float = 10
 
 ## TODO：设置多个节点，可配置速度阶梯
 ## 简单加速
 func _physics_process(delta):
-	position += velocity * delta
-	velocity += Vector2.RIGHT * acceleration * delta
+	velocity.x = move_toward(velocity.x, max_speed * physics_unit, acceleration * physics_unit)
+	move_and_slide()
