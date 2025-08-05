@@ -1,6 +1,7 @@
 extends ColorRect
 
 func _ready() -> void:
+	show()
 	set_upside_down(false)
 	GameDataGlobal.on_upside_down.connect(self.set_upside_down)
 	GameDataGlobal.on_game_restart.connect(self.reset)
