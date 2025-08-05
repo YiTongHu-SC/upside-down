@@ -44,7 +44,7 @@ func _ready():
 func _physics_process(delta):
 	if GameDataGlobal.game_paused: return
 
-	if Input.is_action_just_pressed("SWITCH"):
+	if Input.is_action_just_pressed("DASH"):
 		upside_down = !upside_down
 		gravity_dir = - gravity_dir
 		up_direction = Vector2(0, -gravity_dir)

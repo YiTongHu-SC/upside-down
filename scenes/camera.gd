@@ -28,7 +28,7 @@ func _process(_delta):
 			# 目标超过左阈值，向左跟随
 			global_position.x = target_pos.x + left_threshold + follow_offset.x
 		# 在垂直方向上保持当前位置不变
-	if Input.is_action_just_pressed("SWITCH"):
+	if Input.is_action_just_pressed("DASH"):
 		scale.y = -1
 
 func reset():
