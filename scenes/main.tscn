@@ -35,6 +35,7 @@ hero_spawn_at = NodePath("HeroSocket/HeroSpawnAt")
 camera = NodePath("Camera2D")
 
 [node name="Levels" type="Node2D" parent="."]
+use_parent_material = true
 
 [node name="LevelPacked" parent="Levels" instance=ExtResource("2_o6xl0")]
 
@@ -117,7 +118,7 @@ theme_override_constants/separation = 50
 [node name="Label" type="Label" parent="UI/StartGamePanel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 120
-text = "Game Title"
+text = "Kung Fu Dash"
 horizontal_alignment = 1
 
 [node name="ButtonStart" type="Button" parent="UI/StartGamePanel/VBoxContainer"]
