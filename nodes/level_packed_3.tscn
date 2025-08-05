@@ -36,12 +36,12 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAADAAQAAgAAAAAAAAAEAAQAAQAAAAAAAAADAAUACQAAAAAAAAADAAYACQAAAAAAAAADAAcACQAAAAAAAAAEAAUACgAAAAAAAAAEAAYACgAAAAAAAAAEAAcACgAAAAAAAAAHAAIACgAAAAAAAAAGAAIACQAAAAAAAAAKAAcAAgAAAAAAAAALAAcAAQAAAAAAAAAMAAUAAgAAAAAAAAANAAUAAQAAAAAAAAAMAAYACQAAAAAAAAAMAAcACQAAAAAAAAANAAYACgAAAAAAAAANAAcACgAAAAAAAAADAAIABQAAAAAAAAAEAAIACwAAAAAAAAAHAAMACwAAAAAAAAAGAAMABQAAAAAAAAA=")
 tile_set = ExtResource("2_ws07s")
 
-[node name="Traps" type="TileMapLayer" parent="Platform"]
+[node name="Traps" type="TileMapLayer" parent="Platform" groups=["trap"]]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAABAAIADgAAAAAAAAAFAAIADgAAAAAAAAAKAAIADgAAAAAAAAANAAIADwAAAAAAAAA=")
 tile_set = ExtResource("2_ws07s")
 
-[node name="Traps2" type="TileMapLayer" parent="Platform"]
+[node name="Traps2" type="TileMapLayer" parent="Platform" groups=["trap"]]
 use_parent_material = true
 position = Vector2(0, 64)
 tile_map_data = PackedByteArray("AAAIAAcADAAAAAAAAAAHAAcADQAAAAAAAAA=")

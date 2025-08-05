@@ -140,7 +140,7 @@ func check_collision():
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		if collider and collider.is_in_group("enemy"):
+		if collider and (collider.is_in_group("enemy") or collider.is_in_group("trap")):
 			_on_hero_collision_boss()
 		if collider and collider.is_in_group("reward"):
 			_on_hero_collision_reward()
