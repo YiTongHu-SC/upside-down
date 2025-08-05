@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0jxi3mp4isot"]
+
+[ext_resource type="Texture2D" uid="uid://bcbr0fw21ue5y" path="res://images/GameSuccess.png" id="1_7ei17"]
+[ext_resource type="Texture2D" uid="uid://bljein8td4sm1" path="res://images/Flag.png" id="2_4he2d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p5jl"]
+size = Vector2(31, 656)
+
+[node name="GameSuccess" type="CharacterBody2D" groups=["finish"]]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, -33)
+shape = SubResource("RectangleShape2D_2p5jl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7ei17")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(42, 247)
+texture = ExtResource("2_4he2d")

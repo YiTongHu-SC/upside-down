@@ -49,3 +49,18 @@ tile_set = ExtResource("2_ws07s")
 
 [node name="Diamond" parent="." instance=ExtResource("3_ot65r")]
 position = Vector2(510, 318)
+
+[node name="Diamond2" parent="." instance=ExtResource("3_ot65r")]
+position = Vector2(891, 451)
+
+[node name="Diamond3" parent="." instance=ExtResource("3_ot65r")]
+position = Vector2(726, 909)
+
+[node name="Diamond4" parent="." instance=ExtResource("3_ot65r")]
+position = Vector2(1402, 845)
+
+[node name="Diamond5" parent="." instance=ExtResource("3_ot65r")]
+position = Vector2(1550, 249)
+
+[node name="Diamond6" parent="." instance=ExtResource("3_ot65r")]
+position = Vector2(1887, 255)

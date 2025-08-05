@@ -146,6 +146,8 @@ func check_collision():
 		if collider and collider.is_in_group("reward"):
 			_on_hero_collision_reward()
 			collider.call("kill_self")
+		if collider and collider.is_in_group("finish"):
+			_game_success()
 
 func _on_hero_collision_boss():
 	is_dead = true
@@ -166,3 +168,7 @@ func kill_self():
 	get_parent().add_child(explosion_instance)
 	explosion_instance.global_position = global_position
 	queue_free()
+
+func _game_success():
+	GameDataGlobal.game_paused = true
+	GameDataGlobal.on_game_success.emit()
