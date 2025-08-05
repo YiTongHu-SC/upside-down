@@ -7,6 +7,7 @@ signal on_game_success
 
 var score = 0
 
+@onready var tense = 0
 @onready var game_paused = true
 @onready var switch_view: bool = false
 
