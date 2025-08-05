@@ -143,9 +143,6 @@ func check_collision():
 		var collider = collision.get_collider()
 		if collider and (collider.is_in_group("enemy") or collider.is_in_group("trap")):
 			_on_hero_collision_boss()
-		if collider and collider.is_in_group("reward"):
-			_on_hero_collision_reward()
-			collider.call("kill_self")
 		if collider and collider.is_in_group("finish"):
 			_game_success()
 
@@ -154,10 +151,6 @@ func _on_hero_collision_boss():
 	print("hero collision")
 	GameDataGlobal.on_game_over.emit()
 	kill_self()
-
-func _on_hero_collision_reward():
-	print("hero collision reward")
-	# GameDataGlobal.on_reward_get.emit()
 
 func reset():
 	print("hero reset")
