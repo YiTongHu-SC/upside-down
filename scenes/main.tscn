@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b0spwfs1gscuy"]
+[gd_scene load_steps=18 format=3 uid="uid://b0spwfs1gscuy"]
 
 [ext_resource type="PackedScene" uid="uid://bs1xrjb27dvn0" path="res://nodes/hero.tscn" id="1_0wfyh"]
 [ext_resource type="Material" uid="uid://cyap16m41y5tj" path="res://scenes/scene_mat.tres" id="1_tbgi4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dopr7vae2i0vy" path="res://scenes/screen_color.gd" id="8_choun"]
 [ext_resource type="Shader" uid="uid://bdh7sylqtxtfr" path="res://scenes/screen_shader.gdshader" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://bd5owy0ngoy6p" path="res://scenes/button_change_game_mode.gd" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://ivf86b4km3h0" path="res://scenes/score_label.gd" id="14_a8y0u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
 shader = ExtResource("9_85g3d")
@@ -164,6 +165,7 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Score: 0"
+script = ExtResource("14_a8y0u")
 
 [connection signal="pressed" from="UI/GameOverPanel/VBoxContainer/ButtonStart" to="." method="restart_game"]
 [connection signal="pressed" from="UI/StartGamePanel/VBoxContainer/ButtonStart" to="." method="start_game"]
