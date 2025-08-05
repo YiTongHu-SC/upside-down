@@ -1,6 +1,6 @@
 extends Node2D
 
-
+@export var ui_panel: Container
 @export var hero_pk: PackedScene
 @export var hero_socket: Node2D
 @export var level_pk: PackedScene
@@ -39,6 +39,7 @@ func _physics_process(_delta: float) -> void:
 
 func start_game():
 	GameDataGlobal.game_paused = false
+	ui_panel.show()
 	start_game_panel.hide()
 	game_over_panel.hide()
 	game_over_panel.modulate.a = 0
@@ -50,6 +51,7 @@ func restart_game():
 	last_point = start_level.position
 	hero_pos = hero_spawn_at.position
 	GameDataGlobal.game_paused = true
+	ui_panel.hide()
 	start_game_panel.show()
 	game_over_panel.hide()
 	if hero:
