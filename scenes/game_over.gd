@@ -5,10 +5,11 @@ extends PanelContainer
 
 func _ready() -> void:
 	modulate.a = 0
-	visible = true
+	hide()
 	GameDataGlobal.on_game_over.connect(trigger_game_over)
 
 func trigger_game_over():
+	show()
 	GameDataGlobal.game_paused = true
 	var timer = get_tree().create_timer(delay)
 	await timer.timeout

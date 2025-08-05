@@ -33,12 +33,14 @@ func _physics_process(_delta: float) -> void:
 	if not hero: return
 	if hero.position.x > last_point.x - checkpoint_width:
 		_generate_new_level()
-	pass
+	## 检查角色位置，超过一定阈值时，敌人开始追击
+	if hero.global_position.x > start_level.global_position.x:
+		enemy.start_run()
 
 func start_game():
 	GameDataGlobal.game_paused = false
 	start_game_panel.hide()
-	game_over_panel.show()
+	game_over_panel.hide()
 	game_over_panel.modulate.a = 0
 
 func change_mode():
