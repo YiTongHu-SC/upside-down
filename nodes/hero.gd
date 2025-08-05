@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var explosion: PackedScene
 @export var physics_unit = 100
 # Horizontal movement move_speed
 @export var move_speed = 2.0
@@ -150,7 +151,7 @@ func _on_hero_collision_boss():
 	is_dead = true
 	print("hero collision")
 	GameDataGlobal.on_game_over.emit()
-	queue_free()
+	kill_self()
 
 func _on_hero_collision_reward():
 	print("hero collision reward")
@@ -161,5 +162,7 @@ func reset():
 	pass
 
 func kill_self():
-	print("hero kill self dead")
+	var explosion_instance = explosion.instantiate()
+	get_parent().add_child(explosion_instance)
+	explosion_instance.global_position = global_position
 	queue_free()

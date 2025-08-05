@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://b10pnt6xfnvai"]
+
+[ext_resource type="Script" uid="uid://br448kndrlmpx" path="res://nodes/explosion.gd" id="1_a1sae"]
+[ext_resource type="Texture2D" uid="uid://bwx47034ekonj" path="res://images/explosion/hero_dead_0000_001.png" id="1_hjmkv"]
+[ext_resource type="Texture2D" uid="uid://d4nhvkti332u7" path="res://images/explosion/hero_dead_0001_002.png" id="2_2ur83"]
+[ext_resource type="Texture2D" uid="uid://cb5wc0p6pymep" path="res://images/explosion/hero_dead_0002_003.png" id="3_a1sae"]
+[ext_resource type="Texture2D" uid="uid://ccbm2kvjqlh3w" path="res://images/explosion/hero_dead_0003_004.png" id="4_m0cqv"]
+[ext_resource type="Texture2D" uid="uid://btcpgmg2archj" path="res://images/explosion/hero_dead_0004_005.png" id="5_niikv"]
+[ext_resource type="Texture2D" uid="uid://bes5u6ca48xb5" path="res://images/explosion/hero_dead_0005_006.png" id="6_6c0dj"]
+[ext_resource type="Texture2D" uid="uid://u3td70y08qr0" path="res://images/explosion/hero_dead_0006_007.png" id="7_fg1uj"]
+
+[sub_resource type="Animation" id="Animation_7pcsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_hjmkv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hjmkv"]
+resource_name = "explosion"
+length = 0.233337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_hjmkv"), ExtResource("2_2ur83"), ExtResource("3_a1sae"), ExtResource("4_m0cqv"), ExtResource("5_niikv"), ExtResource("6_6c0dj"), ExtResource("7_fg1uj"), ExtResource("7_fg1uj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.619608), Color(1, 1, 1, 0.243137), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7pcsp"]
+_data = {
+&"RESET": SubResource("Animation_7pcsp"),
+&"explosion": SubResource("Animation_hjmkv")
+}
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_a1sae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hjmkv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7pcsp")
+}
