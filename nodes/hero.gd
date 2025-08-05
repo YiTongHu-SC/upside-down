@@ -135,20 +135,26 @@ func flip_y():
 
 func check_collision():
 	if GameDataGlobal.game_paused: return
+	if is_dead: return
 	# 检查碰撞
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider and collider.is_in_group("enemy"):
-			if is_dead: return
-			_on_hero_collision()
+			_on_hero_collision_boss()
+		if collider and collider.is_in_group("reward"):
+			_on_hero_collision_reward()
+			collider.call("kill_self")
 
-
-func _on_hero_collision():
+func _on_hero_collision_boss():
 	is_dead = true
 	print("hero collision")
 	GameDataGlobal.on_game_over.emit()
 	queue_free()
+
+func _on_hero_collision_reward():
+	print("hero collision reward")
+	# GameDataGlobal.on_reward_get.emit()
 
 func reset():
 	print("hero reset")

@@ -82,8 +82,7 @@ _data = {
 
 [node name="Hero" type="CharacterBody2D"]
 material = ExtResource("1_u83nc")
-collision_layer = 3
-collision_mask = 3
+collision_mask = 7
 platform_wall_layers = 1
 script = ExtResource("1_y8yjb")
 physics_unit = 200
