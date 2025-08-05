@@ -5,7 +5,7 @@ signal on_game_over
 signal on_upside_down
 
 @onready var game_paused = true
-@onready var switch_view: bool = true
+@onready var switch_view: bool = false
 
 func change_mode():
 	switch_view = !switch_view

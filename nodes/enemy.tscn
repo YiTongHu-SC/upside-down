@@ -16,6 +16,11 @@ max_speed = 5.0
 material = ExtResource("2_j04cv")
 texture = ExtResource("3_cgypo")
 
+[node name="Enemy2" type="Sprite2D" parent="."]
+material = ExtResource("2_j04cv")
+position = Vector2(-1315.7, 0)
+texture = ExtResource("3_cgypo")
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-56.5671, -282.511)
 scale = Vector2(1.01672, 1)

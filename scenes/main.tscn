@@ -44,7 +44,7 @@ position = Vector2(1920, 0)
 [node name="HeroSocket" type="Node2D" parent="."]
 
 [node name="HeroSpawnAt" type="Node2D" parent="HeroSocket"]
-position = Vector2(1017, 550)
+position = Vector2(1029, 635)
 
 [node name="Enemy" parent="." instance=ExtResource("4_tbgi4")]
 position = Vector2(-455, 569)
