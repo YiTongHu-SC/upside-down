@@ -35,9 +35,6 @@ func show_level():
 	var tween: Tween = create_tween()
 	tween.tween_property(progress, "value", target_value, duration).from(0)
 	await get_tree().create_timer(duration).timeout
-	if GameDataGlobal.score == GameDataGlobal.MAX_SCORE:
-		GameDataGlobal.level += 1
-
 	update_level()
 	level_label.text = "Level : %s" % level_text
 	desc_label.text = level_desc

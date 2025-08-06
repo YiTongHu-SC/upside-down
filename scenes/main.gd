@@ -52,11 +52,12 @@ func change_mode():
 	GameDataGlobal.change_mode()
 
 func restart_game():
-	level_index = 0
+	GameDataGlobal.game_paused = true
+	GameDataGlobal.game_success = false
 	GameDataGlobal.score = 0
+	level_index = 0
 	last_point = start_level.position
 	hero_pos = hero_spawn_at.position
-	GameDataGlobal.game_paused = true
 	game_win.hide()
 	ui_panel.hide()
 	start_game_panel.show()
