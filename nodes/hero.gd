@@ -50,8 +50,6 @@ func _ready():
 
 func _physics_process(delta):
 	if GameDataGlobal.game_paused: return
-	if not is_on_floor():
-		particles_walk.emitting = false
 
 	if Input.is_action_just_pressed("DASH"):
 		upside_down = !upside_down
@@ -110,7 +108,8 @@ func _physics_process(delta):
 	var direction = Input.get_axis("MOVE_LEFT", "MOVE_RIGHT")
 	if direction:
 		if current_state != State.WALK && not is_jumping:
-			animation.play("walk")
+			if is_on_floor():
+				animation.play("walk")
 			current_state = State.WALK
 			particles_walk.emitting = true
 		velocity.x = direction * move_speed * physics_unit
@@ -122,7 +121,8 @@ func _physics_process(delta):
 			particles_walk.emitting = false
 		# Apply friction when no input
 		velocity.x = move_toward(velocity.x, 0, friction * physics_unit * delta)
-
+	if not is_on_floor():
+		particles_walk.emitting = false
 	# Apply movement
 	move_and_slide()
 	check_collision()
