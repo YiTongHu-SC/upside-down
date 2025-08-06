@@ -72,7 +72,7 @@ position = Vector2(1029, 635)
 [node name="Enemy" parent="." instance=ExtResource("4_tbgi4")]
 position = Vector2(-455, 569)
 acceleration = 0.5
-max_speed = 1.0
+max_speed = 3.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1040, 578)
