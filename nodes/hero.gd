@@ -173,6 +173,7 @@ func check_collision():
 			_game_success()
 
 func _on_hero_collision_boss():
+	if is_dead: return
 	is_dead = true
 	print("hero collision")
 	GameDataGlobal.on_game_over.emit()

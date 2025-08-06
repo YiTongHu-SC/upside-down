@@ -7,10 +7,8 @@ extends Control
 
 func set_flow(screen_pos):
 	# Convert screen coordinates to UI coordinates
-	print("screen_pos:", screen_pos)
 	# var ui_position = get_global_transform_with_canvas().affine_inverse() * get_viewport().get_screen_transform().affine_inverse() * screen_pos
 	var ui_position = get_viewport().get_screen_transform().affine_inverse() * screen_pos
-	print("ui_position:", ui_position)
 	position = ui_position
 	position.y -= init_offset
 	var target_pos = position - Vector2(0, move_distance)

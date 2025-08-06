@@ -17,6 +17,5 @@ func kill_self():
 	if is_dead: return
 	is_dead = true
 	var screen_pos = get_viewport().get_screen_transform() * get_canvas_transform() * global_position
-	print("screen_pos:", screen_pos)
 	GameDataGlobal.on_add_score.emit(reward_value, screen_pos)
 	queue_free()

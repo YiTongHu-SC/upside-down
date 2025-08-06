@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b0spwfs1gscuy"]
+[gd_scene load_steps=29 format=3 uid="uid://b0spwfs1gscuy"]
 
 [ext_resource type="PackedScene" uid="uid://bs1xrjb27dvn0" path="res://nodes/hero.tscn" id="1_0wfyh"]
 [ext_resource type="Material" uid="uid://cyap16m41y5tj" path="res://scenes/scene_mat.tres" id="1_tbgi4"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://dq7e6if8kdgi0" path="res://scenes/bg_music.gd" id="17_muem4"]
 [ext_resource type="Script" uid="uid://08402q4c7o11" path="res://scenes/ui_manager.gd" id="20_yc10j"]
 [ext_resource type="PackedScene" uid="uid://i0xfpuaqva0e" path="res://add_score.tscn" id="21_jscy8"]
+[ext_resource type="Script" uid="uid://bdvoolanvc03t" path="res://scenes/show_score_level.gd" id="23_pm3ni"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
 shader = ExtResource("9_85g3d")
@@ -32,6 +33,12 @@ bg_color = Color(0.11, 0.11, 0.11, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscy8"]
+bg_color = Color(0.27, 0, 0, 0.482353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pm3ni"]
+bg_color = Color(0.301961, 0.607843, 0.901961, 1)
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("ui_panel", "hero_socket", "level_socket", "enemy", "start_level", "start_game_panel", "game_over_panel", "hero_spawn_at", "camera", "game_win")]
 material = ExtResource("1_tbgi4")
@@ -94,7 +101,6 @@ script = ExtResource("8_choun")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="GameOverPanel" type="PanelContainer" parent="UI"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -124,6 +130,7 @@ theme_override_font_sizes/font_size = 35
 text = "Restart Game"
 
 [node name="GameWin" type="PanelContainer" parent="UI"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -217,6 +224,54 @@ script = ExtResource("14_a8y0u")
 [node name="ScoreSocket" type="Control" parent="UI/UiPanel"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="ShowScoreLevel" type="Control" parent="UI/UiPanel" node_paths=PackedStringArray("progress", "level_label", "desc_label")]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("23_pm3ni")
+delay = 1.0
+duration = 1.5
+progress = NodePath("VBoxContainer/ProgressBar")
+level_label = NodePath("VBoxContainer/Label")
+desc_label = NodePath("VBoxContainer/Desc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UiPanel/ShowScoreLevel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -366.0
+offset_right = 250.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="UI/UiPanel/ShowScoreLevel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="UI/UiPanel/ShowScoreLevel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Beginner"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/UiPanel/ShowScoreLevel/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/background = SubResource("StyleBoxFlat_jscy8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pm3ni")
+value = 44.51
+show_percentage = false
 
 [connection signal="pressed" from="UI/GameOverPanel/VBoxContainer/ButtonStart" to="." method="restart_game"]
 [connection signal="pressed" from="UI/GameWin/VBoxContainer/ButtonStart" to="." method="restart_game"]
