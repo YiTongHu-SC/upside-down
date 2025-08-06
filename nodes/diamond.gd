@@ -10,11 +10,13 @@ func _ready():
 
 func _on_body_entered(body: Node):
 	if is_dead: return
-	if body.is_in_group("hero"):  # 确保进入的是玩家
+	if body.is_in_group("hero"): # 确保进入的是玩家
 		kill_self()
 
 func kill_self():
 	if is_dead: return
 	is_dead = true
-	GameDataGlobal.score += reward_value
+	var screen_pos = get_viewport().get_screen_transform() * get_canvas_transform() * global_position
+	print("screen_pos:", screen_pos)
+	GameDataGlobal.on_add_score.emit(reward_value, screen_pos)
 	queue_free()

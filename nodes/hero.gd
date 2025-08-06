@@ -18,7 +18,7 @@ extends CharacterBody2D
 const MIN_JUMP_TIME = 0.05 # 50ms for minimum jump
 const MAX_JUMP_TIME = 0.2 # 200ms for maximum jump
 const COYOTE_TIME = 0.12 # 120ms coyote time
-
+const WIN_GAME_SCORE = 200
 # Variables to track jump input timing
 var jump_input_time = 0.0
 var jump_key_held = false
@@ -190,4 +190,6 @@ func kill_self():
 
 func _game_success():
 	GameDataGlobal.game_paused = true
+	var screen_pos = get_viewport().get_screen_transform() * get_canvas_transform() * global_position
+	GameDataGlobal.on_add_score.emit(WIN_GAME_SCORE, screen_pos)
 	GameDataGlobal.on_game_success.emit()
