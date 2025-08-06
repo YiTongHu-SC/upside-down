@@ -33,6 +33,8 @@ enum State {
 @onready var current_state = State.IDLE
 @onready var animation = $AnimationPlayer
 @onready var gravity_dir = 1
+@onready var particles: GPUParticles2D = $GPUParticles2D
+
 var init_pos: Vector2
 func _ready():
 	init_pos = position
@@ -101,12 +103,14 @@ func _physics_process(delta):
 		if current_state != State.WALK && not is_jumping:
 			animation.play("walk")
 			current_state = State.WALK
+			particles.emitting = true
 		velocity.x = direction * move_speed * physics_unit
 		_update_face(direction)
 	else:
 		if current_state != State.IDLE && not is_jumping:
 			animation.play("idle")
 			current_state = State.IDLE
+			particles.emitting = false
 		# Apply friction when no input
 		velocity.x = move_toward(velocity.x, 0, friction * physics_unit * delta)
 
