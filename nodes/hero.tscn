@@ -152,9 +152,18 @@ libraries = {
 &"": SubResource("AnimationLibrary_0s01v")
 }
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticlesWalk" type="GPUParticles2D" parent="."]
 position = Vector2(-21, 34)
 emitting = false
 amount = 16
 texture = ExtResource("5_4kahr")
+process_material = SubResource("ParticleProcessMaterial_4kahr")
+
+[node name="GPUParticlesDash" type="GPUParticles2D" parent="."]
+position = Vector2(-21, 34)
+emitting = false
+amount = 30
+texture = ExtResource("5_4kahr")
+lifetime = 0.5
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_4kahr")

@@ -33,7 +33,8 @@ enum State {
 @onready var current_state = State.IDLE
 @onready var animation = $AnimationPlayer
 @onready var gravity_dir = 1
-@onready var particles: GPUParticles2D = $GPUParticles2D
+@onready var particles_walk: GPUParticles2D = $GPUParticlesWalk
+@onready var particles_dash: GPUParticles2D = $GPUParticlesDash
 
 var init_pos: Vector2
 func _ready():
@@ -55,6 +56,7 @@ func _physics_process(delta):
 		# 给一个大速度
 		velocity.y = switch_jump_velocity * physics_unit * gravity_dir
 		GameDataGlobal.on_upside_down.emit(upside_down)
+		particles_dash.emitting = true
 		pass
 
 	# Handle jump input timing
@@ -103,14 +105,14 @@ func _physics_process(delta):
 		if current_state != State.WALK && not is_jumping:
 			animation.play("walk")
 			current_state = State.WALK
-			particles.emitting = true
+			particles_walk.emitting = true
 		velocity.x = direction * move_speed * physics_unit
 		_update_face(direction)
 	else:
 		if current_state != State.IDLE && not is_jumping:
 			animation.play("idle")
 			current_state = State.IDLE
-			particles.emitting = false
+			particles_walk.emitting = false
 		# Apply friction when no input
 		velocity.x = move_toward(velocity.x, 0, friction * physics_unit * delta)
 
