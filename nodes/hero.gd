@@ -124,18 +124,18 @@ func _physics_process(delta):
 			if is_on_floor():
 				animation.play("walk")
 			current_state = State.WALK
-			particles_walk.emitting = true
 		velocity.x = direction * move_speed * physics_unit
 		_update_face(direction)
 	else:
 		if current_state != State.IDLE && not is_jumping:
 			animation.play("idle")
 			current_state = State.IDLE
-			particles_walk.emitting = false
 		# Apply friction when no input
 		velocity.x = move_toward(velocity.x, 0, friction * physics_unit * delta)
-	if not is_on_floor():
+	if not is_on_floor() or not direction:
 		particles_walk.emitting = false
+	else:
+		particles_walk.emitting = true
 	# Apply movement
 	move_and_slide()
 	check_collision()
