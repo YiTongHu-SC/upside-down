@@ -10,18 +10,21 @@ extends CharacterBody2D
 @export var min_jump_velocity = 2.0
 @export var jump_upward_acceleration = 20.0 # Acceleration while holding jump
 @export var jump_gravity = 10.0 # Gravity when not holding jump
-@export var release_gravity = 15.0 # Gravity when releasing jump button
+@export var release_gravity = 15.0 # Gravity when releasing jump
 @export var jump_particles_pk: PackedScene
 @export var socket: Node2D
 
 # Timing parameters for variable jump
 const MIN_JUMP_TIME = 0.05 # 50ms for minimum jump
 const MAX_JUMP_TIME = 0.2 # 200ms for maximum jump
+const COYOTE_TIME = 0.12 # 120ms coyote time
 
 # Variables to track jump input timing
 var jump_input_time = 0.0
 var jump_key_held = false
 var is_jumping = false
+var coyote_timer = 0.0
+var was_on_floor = false
 
 enum State {
 	IDLE,
@@ -62,8 +65,18 @@ func _physics_process(delta):
 		particles_dash.emitting = true
 		pass
 
+	# Update coyote timer
+	if is_on_floor():
+		coyote_timer = COYOTE_TIME
+		was_on_floor = true
+	elif was_on_floor:
+		# Just left the floor, start coyote timer
+		coyote_timer -= delta
+		if coyote_timer <= 0:
+			was_on_floor = false
+
 	# Handle jump input timing
-	if Input.is_action_just_pressed("JUMP") and is_on_floor():
+	if Input.is_action_just_pressed("JUMP") and (is_on_floor() or coyote_timer > 0):
 		jump_key_held = true
 		jump_input_time = 0.0
 		is_jumping = true
