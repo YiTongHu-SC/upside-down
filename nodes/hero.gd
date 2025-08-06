@@ -11,6 +11,8 @@ extends CharacterBody2D
 @export var jump_upward_acceleration = 20.0 # Acceleration while holding jump
 @export var jump_gravity = 10.0 # Gravity when not holding jump
 @export var release_gravity = 15.0 # Gravity when releasing jump button
+@export var jump_particles_pk: PackedScene
+@export var socket: Node2D
 
 # Timing parameters for variable jump
 const MIN_JUMP_TIME = 0.05 # 50ms for minimum jump
@@ -35,6 +37,7 @@ enum State {
 @onready var gravity_dir = 1
 @onready var particles_walk: GPUParticles2D = $GPUParticlesWalk
 @onready var particles_dash: GPUParticles2D = $GPUParticlesDash
+var particles_jump: GPUParticles2D
 
 var init_pos: Vector2
 func _ready():
@@ -47,6 +50,8 @@ func _ready():
 
 func _physics_process(delta):
 	if GameDataGlobal.game_paused: return
+	if not is_on_floor():
+		particles_walk.emitting = false
 
 	if Input.is_action_just_pressed("DASH"):
 		upside_down = !upside_down
@@ -66,6 +71,8 @@ func _physics_process(delta):
 		is_jumping = true
 		animation.play("jump")
 		current_state = State.JUMP
+		particles_jump = jump_particles_pk.instantiate()
+		socket.add_child(particles_jump)
 
 		# Immediate minimal jump to avoid input lag
 		velocity.y = - min_jump_velocity * physics_unit * gravity_dir

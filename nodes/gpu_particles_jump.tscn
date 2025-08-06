@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhhko6tcrvink"]
+
+[ext_resource type="Texture2D" uid="uid://x7ad4u7otek1" path="res://images/dust/dust_effect_0003_001.png" id="1_yp4pf"]
+[ext_resource type="Script" uid="uid://cu123vnkcslu4" path="res://nodes/particles_jump.gd" id="2_v7tu3"]
+
+[sub_resource type="Curve" id="Curve_4kahr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.766467, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5nhaj"]
+curve = SubResource("Curve_4kahr")
+
+[sub_resource type="Curve" id="Curve_0s01v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.636742), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_omvua"]
+curve = SubResource("Curve_0s01v")
+
+[sub_resource type="Curve" id="Curve_5nhaj"]
+_limits = [0.0, 1.0733, 0.0, 3.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.583832, 1.0733), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0s01v"]
+curve = SubResource("Curve_5nhaj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kahr"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 1)
+angle_min = 1.07288e-05
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 202.28
+initial_velocity_max = 202.28
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+damping_min = 61.585
+damping_max = 61.585
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_omvua")
+scale_over_velocity_curve = SubResource("CurveTexture_0s01v")
+alpha_curve = SubResource("CurveTexture_5nhaj")
+
+[node name="GPUParticlesJump" type="GPUParticles2D"]
+emitting = false
+amount = 20
+texture = ExtResource("1_yp4pf")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4kahr")
+script = ExtResource("2_v7tu3")

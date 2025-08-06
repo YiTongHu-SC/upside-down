@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs1xrjb27dvn0"]
+[gd_scene load_steps=20 format=3 uid="uid://bs1xrjb27dvn0"]
 
 [ext_resource type="Material" uid="uid://c53od883rn46n" path="res://materials/hero_mat.tres" id="1_u83nc"]
 [ext_resource type="Script" uid="uid://b0i2nhrdyqgoj" path="res://nodes/hero.gd" id="1_y8yjb"]
 [ext_resource type="Texture2D" uid="uid://38nbiiyriwv2" path="res://images/Hero.png" id="2_y8yjb"]
 [ext_resource type="PackedScene" uid="uid://b10pnt6xfnvai" path="res://nodes/explosion.tscn" id="3_1dsar"]
+[ext_resource type="PackedScene" uid="uid://bhhko6tcrvink" path="res://nodes/gpu_particles_jump.tscn" id="4_5nhaj"]
 [ext_resource type="Texture2D" uid="uid://1til182rov1y" path="res://images/dust/dust_effect_0000_004.png" id="5_4kahr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgp6g"]
@@ -108,25 +109,24 @@ curve = SubResource("Curve_5nhaj")
 lifetime_randomness = 0.1
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(30, 10, 1)
+emission_box_extents = Vector3(10, 10, 1)
 angle_min = 1.07288e-05
 angle_max = 720.0
 direction = Vector3(0, 1, 0)
-spread = 90.0
-initial_velocity_min = 20.0
-initial_velocity_max = 25.0
+spread = 180.0
+initial_velocity_min = 202.28
+initial_velocity_max = 202.28
 angular_velocity_min = -20.0
 angular_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
-damping_min = 8.0
-damping_max = 8.0
-scale_min = 0.6
-scale_max = 1.1
+damping_min = 61.585
+damping_max = 61.585
+scale_max = 1.2
 scale_curve = SubResource("CurveTexture_omvua")
 scale_over_velocity_curve = SubResource("CurveTexture_0s01v")
 alpha_curve = SubResource("CurveTexture_5nhaj")
 
-[node name="Hero" type="CharacterBody2D"]
+[node name="Hero" type="CharacterBody2D" node_paths=PackedStringArray("socket")]
 material = ExtResource("1_u83nc")
 collision_mask = 7
 floor_block_on_wall = false
@@ -136,6 +136,8 @@ script = ExtResource("1_y8yjb")
 explosion = ExtResource("3_1dsar")
 physics_unit = 200
 switch_jump_velocity = 10
+jump_particles_pk = ExtResource("4_5nhaj")
+socket = NodePath("JumpParticles")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 13.5)
@@ -155,15 +157,18 @@ libraries = {
 [node name="GPUParticlesWalk" type="GPUParticles2D" parent="."]
 position = Vector2(-21, 34)
 emitting = false
-amount = 16
+amount = 24
 texture = ExtResource("5_4kahr")
 process_material = SubResource("ParticleProcessMaterial_4kahr")
 
 [node name="GPUParticlesDash" type="GPUParticles2D" parent="."]
 position = Vector2(-21, 34)
 emitting = false
-amount = 30
+amount = 40
 texture = ExtResource("5_4kahr")
-lifetime = 0.5
+lifetime = 0.35
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_4kahr")
+
+[node name="JumpParticles" type="Node2D" parent="."]
+position = Vector2(-7, 40)
