@@ -69,7 +69,7 @@ texture_region_size = Vector2i(128, 128)
 texture = ExtResource("9_ajkge")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 0, -64, 64, 64, 64, 64, 0)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -16, -64, 64, 64, 64, 64, -16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_662vx"]
 texture = ExtResource("4_3dlc2")
