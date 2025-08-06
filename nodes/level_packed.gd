@@ -3,6 +3,9 @@ extends Node2D
 const kill_distance = 1920
 var enemy: Node2D = null
 
+@export var diamond_sockets: Array[Node2D]
+@export var diamond_pk: PackedScene
+
 @onready var init_exist = true
 
 func _ready():
@@ -23,4 +26,7 @@ func _physics_process(_delta: float) -> void:
 func reset():
 	if not init_exist:
 		queue_free()
+	for socket in diamond_sockets:
+		var diamond = diamond_pk.instantiate()
+		socket.add_child(diamond)
 	pass
