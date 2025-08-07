@@ -43,7 +43,7 @@ bg_color = Color(0.301961, 0.607843, 0.901961, 1)
 [node name="Main" type="Node2D" node_paths=PackedStringArray("ui_panel", "hero_socket", "level_socket", "enemy", "start_level", "start_game_panel", "game_over_panel", "hero_spawn_at", "camera", "game_win")]
 material = ExtResource("1_tbgi4")
 script = ExtResource("2_tipki")
-level_pks = Array[PackedScene]([ExtResource("3_0ld40"), ExtResource("4_gqmmt"), ExtResource("4_trceg"), ExtResource("4_dp3eg"), ExtResource("4_jkv2x")])
+level_pks = Array[PackedScene]([ExtResource("3_0ld40"), ExtResource("4_gqmmt"), ExtResource("4_trceg"), ExtResource("4_dp3eg"), ExtResource("4_jkv2x"), ExtResource("3_0ld40")])
 ui_panel = NodePath("UI/UiPanel")
 hero_pk = ExtResource("1_0wfyh")
 hero_socket = NodePath("HeroSocket")
