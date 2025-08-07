@@ -8,3 +8,11 @@ func _ready() -> void:
 
 func refresh():
 	text = tr(local_key)
+
+func set_local(key:String):
+	local_key = key
+	refresh()
+
+func clear():
+	local_key = ""
+	text = ""

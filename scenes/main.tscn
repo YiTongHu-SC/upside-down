@@ -36,7 +36,7 @@ shader = ExtResource("9_85g3d")
 shader_parameter/upside_down = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
-bg_color = Color(0.11, 0.11, 0.11, 1)
+bg_color = Color(0.11, 0.11, 0.11, 0.498039)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -133,14 +133,29 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("6_o6xl0")
 theme_override_font_sizes/font_size = 120
-text = "Game Over"
+text = "Mission Failed"
+script = ExtResource("25_fv21b")
+local_key = "game_over"
 
 [node name="ButtonStart" type="Button" parent="UI/GameOverPanel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 35
-text = "Restart Game"
+
+[node name="Label" type="Label" parent="UI/GameOverPanel/VBoxContainer/ButtonStart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_fv21b")
+local_key = "restart_game"
 
 [node name="GameWin" type="PanelContainer" parent="UI" node_paths=PackedStringArray("button_start")]
 visible = false
@@ -161,17 +176,34 @@ theme_override_constants/separation = 50
 [node name="Label" type="Label" parent="UI/GameWin/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 120
-text = "Finished!!"
+text = "Mission Complete!"
 horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_fv21b")
+local_key = "game_win"
 
 [node name="ButtonStart" type="Button" parent="UI/GameWin/VBoxContainer"]
 custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 35
-text = "Restart Game"
+
+[node name="Label" type="Label" parent="UI/GameWin/VBoxContainer/ButtonStart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Try Again"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_fv21b")
+local_key = "restart_game"
 
 [node name="StartGamePanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("button_start")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -188,6 +220,7 @@ theme_override_constants/separation = 50
 
 [node name="Label" type="Label" parent="UI/StartGamePanel/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("6_o6xl0")
 theme_override_font_sizes/font_size = 120
 text = "Kung Fu Dash"
 horizontal_alignment = 1
@@ -236,7 +269,6 @@ script = ExtResource("25_fv21b")
 local_key = "lang"
 
 [node name="UiPanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("score_socket")]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -248,67 +280,68 @@ script = ExtResource("20_yc10j")
 score_pk = ExtResource("21_jscy8")
 score_socket = NodePath("ScoreSocket")
 
+[node name="ScoreSocket" type="Control" parent="UI/UiPanel"]
+layout_mode = 2
+mouse_filter = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="UI/UiPanel"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/margin_left = 700
 theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 700
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/UiPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UiPanel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UiPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="UI/UiPanel/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UiPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Score: 0"
+
+[node name="Label" type="Label" parent="UI/UiPanel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Score: "
+script = ExtResource("25_fv21b")
+local_key = "score"
+
+[node name="Num" type="Label" parent="UI/UiPanel/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "0"
 script = ExtResource("14_a8y0u")
 
-[node name="ScoreSocket" type="Control" parent="UI/UiPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UiPanel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("progress", "level_label", "desc_label")]
 layout_mode = 2
 mouse_filter = 2
-
-[node name="ShowScoreLevel" type="Control" parent="UI/UiPanel" node_paths=PackedStringArray("progress", "level_label", "desc_label")]
-layout_mode = 2
-mouse_filter = 2
+theme_override_constants/separation = 20
 script = ExtResource("23_pm3ni")
-delay = 1.0
-duration = 1.5
-progress = NodePath("VBoxContainer/ProgressBar")
-level_label = NodePath("VBoxContainer/Label")
-desc_label = NodePath("VBoxContainer/Desc")
+progress = NodePath("ProgressBar")
+level_label = NodePath("LevelLabel")
+desc_label = NodePath("Desc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/UiPanel/ShowScoreLevel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -366.0
-offset_right = 250.0
-offset_bottom = -296.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/separation = 8
-
-[node name="Label" type="Label" parent="UI/UiPanel/ShowScoreLevel/VBoxContainer"]
+[node name="LevelLabel" type="Label" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Desc" type="Label" parent="UI/UiPanel/ShowScoreLevel/VBoxContainer"]
+[node name="Desc" type="Label" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 35
 text = "Beginner"
 horizontal_alignment = 1
+script = ExtResource("25_fv21b")
 
-[node name="ProgressBar" type="ProgressBar" parent="UI/UiPanel/ShowScoreLevel/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30

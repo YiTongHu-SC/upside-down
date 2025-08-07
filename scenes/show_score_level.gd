@@ -17,7 +17,7 @@ func _ready() -> void:
 func reset():
 	hide()
 	level_label.text = "Level : %s" % ""
-	desc_label.text = ""
+	desc_label.clear()
 
 func show_level():
 	print("show_level")
@@ -37,7 +37,7 @@ func show_level():
 	await get_tree().create_timer(duration).timeout
 	update_level()
 	level_label.text = "Level : %s" % level_text
-	desc_label.text = level_desc
+	desc_label.set_local(level_desc)
 	pass
 
 func update_level():
@@ -47,19 +47,19 @@ func update_level():
 			level_desc = ""
 		1:
 			level_text = "S"
-			level_desc = "Kung Fu Master"
+			level_desc = "level_S"
 		2:
 			level_text = "A"
-			level_desc = "Master"
+			level_desc = "level_A"
 		3:
 			level_text = "B"
-			level_desc = "Expert"
+			level_desc = "level_B"
 		4:
 			level_text = "C"
-			level_desc = "Disciple"
+			level_desc = "level_C"
 		5:
 			level_text = "D"
-			level_desc = "Student"
+			level_desc = "level_D"
 		6:
 			level_text = "E"
-			level_desc = "Beginner"
+			level_desc = "level_E"
