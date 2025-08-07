@@ -2,7 +2,7 @@ extends Control
 @export var delay = 0.5
 @export var duration: float = 2
 @export var progress: ProgressBar
-@export var level_label: Label
+@export var level_label: RichTextLabel
 @export var desc_label: Label
 
 var level_text: String
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func reset():
 	hide()
-	level_label.text = "Level : %s" % ""
+	level_label.text = ""
 	desc_label.clear()
 
 func show_level():
@@ -36,7 +36,7 @@ func show_level():
 	tween.tween_property(progress, "value", target_value, duration).from(0)
 	await get_tree().create_timer(duration).timeout
 	update_level()
-	level_label.text = "Level : %s" % level_text
+	level_label.text = level_text
 	desc_label.set_local(level_desc)
 	pass
 
@@ -46,20 +46,21 @@ func update_level():
 			level_text = ""
 			level_desc = ""
 		1:
-			level_text = "S"
+			## BBCode format
+			level_text = "[color=#ffff4d]S[/color]"
 			level_desc = "level_S"
 		2:
-			level_text = "A"
+			level_text = "[color=#ffa929]A[/color]"
 			level_desc = "level_A"
 		3:
-			level_text = "B"
+			level_text = "[color=#ff8161]B[/color]"
 			level_desc = "level_B"
 		4:
-			level_text = "C"
+			level_text = "[color=#855cff]C[/color]"
 			level_desc = "level_C"
 		5:
-			level_text = "D"
+			level_text =  "[color=#7a9cff]D[/color]"
 			level_desc = "level_D"
 		6:
-			level_text = "E"
+			level_text =  "[color=#b1ff8c]E[/color]"
 			level_desc = "level_E"

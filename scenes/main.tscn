@@ -112,7 +112,6 @@ script = ExtResource("8_choun")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="GameOverPanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("button_start")]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -324,15 +323,37 @@ mouse_filter = 2
 theme_override_constants/separation = 20
 script = ExtResource("23_pm3ni")
 progress = NodePath("ProgressBar")
-level_label = NodePath("LevelLabel")
+level_label = NodePath("HBoxContainer/RichTextLabel")
 desc_label = NodePath("Desc")
 
-[node name="LevelLabel" type="Label" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 80
-text = "A"
+text = "Level: "
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("25_fv21b")
+local_key = "level"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0.6925, 1, 0.55, 1)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/bold_italics_font_size = 80
+theme_override_font_sizes/italics_font_size = 80
+theme_override_font_sizes/mono_font_size = 80
+theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/bold_font_size = 80
+bbcode_enabled = true
+text = "E"
+fit_content = true
 
 [node name="Desc" type="Label" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
