@@ -1,23 +1,9 @@
 extends PanelContainer
 
-@export var delay = 0.8
-@export var duration = 1.5
 @export var button_start: Button
-
-func _ready() -> void:
+func _ready():
 	button_start.grab_focus()
-	modulate.a = 0
-	hide()
-	GameDataGlobal.on_game_over.connect(trigger_game_over)
-
-func trigger_game_over():
-	show()
-	button_start.grab_focus()
-	GameDataGlobal.game_paused = true
-	var timer = get_tree().create_timer(delay)
-	await timer.timeout
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate:a", 1, delay)
+	GameDataGlobal.on_game_restart.connect(_on_game_restart)
 
 func _input(event):
 	# 检查是否是手柄按钮事件
@@ -31,3 +17,6 @@ func _input(event):
 				focused_item.emit_signal("pressed")
 				# 标记事件已处理，防止其他地方重复处理
 				get_viewport().set_input_as_handled()
+
+func _on_game_restart():
+	button_start.grab_focus()
