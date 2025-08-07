@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b0spwfs1gscuy"]
+[gd_scene load_steps=36 format=3 uid="uid://b0spwfs1gscuy"]
 
 [ext_resource type="PackedScene" uid="uid://bs1xrjb27dvn0" path="res://nodes/hero.tscn" id="1_0wfyh"]
 [ext_resource type="Material" uid="uid://cyap16m41y5tj" path="res://scenes/scene_mat.tres" id="1_tbgi4"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://devs2jxulo0kl" path="res://core/level_database.gd" id="9_y6deb"]
 [ext_resource type="Script" uid="uid://bl00dj6cvd7sy" path="res://core/level_info.gd" id="10_2wyq8"]
 [ext_resource type="Resource" uid="uid://bohfaj3g5nasr" path="res://data/level_1.tres" id="11_vxglm"]
-[ext_resource type="Script" uid="uid://bd5owy0ngoy6p" path="res://scenes/button_change_game_mode.gd" id="11_ya4ey"]
 [ext_resource type="Resource" uid="uid://dy7fx3doumpcr" path="res://data/level_2.tres" id="12_vxglm"]
 [ext_resource type="Resource" uid="uid://cu8lcso3r500f" path="res://data/level_5.tres" id="13_qkpxi"]
 [ext_resource type="Resource" uid="uid://cmydkhgylcn58" path="res://data/level_6.tres" id="14_5q0nq"]
@@ -29,6 +28,8 @@
 [ext_resource type="Script" uid="uid://2hx53mvphpps" path="res://scenes/start_game_panel.gd" id="23_2f3dj"]
 [ext_resource type="Script" uid="uid://bdvoolanvc03t" path="res://scenes/show_score_level.gd" id="23_pm3ni"]
 [ext_resource type="Script" uid="uid://faeym7uu00ul" path="res://scenes/game_win.gd" id="23_yq6so"]
+[ext_resource type="Script" uid="uid://cqf2vw5t5todh" path="res://localization/localized_label.gd" id="25_fv21b"]
+[ext_resource type="Script" uid="uid://6yciwhiy4qg4" path="res://scenes/button_lang.gd" id="26_fv21b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
 shader = ExtResource("9_85g3d")
@@ -171,7 +172,6 @@ theme_override_font_sizes/font_size = 35
 text = "Restart Game"
 
 [node name="StartGamePanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("button_start")]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -191,22 +191,49 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 120
 text = "Kung Fu Dash"
 horizontal_alignment = 1
+script = ExtResource("25_fv21b")
+local_key = "game_name"
 
 [node name="ButtonStart" type="Button" parent="UI/StartGamePanel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 35
-text = "Start Game"
 
-[node name="ButtonTest" type="Button" parent="UI/StartGamePanel/VBoxContainer"]
-visible = false
+[node name="Label" type="Label" parent="UI/StartGamePanel/VBoxContainer/ButtonStart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_fv21b")
+local_key = "start_game"
+
+[node name="ButtonLang" type="Button" parent="UI/StartGamePanel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 35
-text = "切换模式-测试"
-script = ExtResource("11_ya4ey")
+script = ExtResource("26_fv21b")
+
+[node name="Label2" type="Label" parent="UI/StartGamePanel/VBoxContainer/ButtonLang"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "English"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_fv21b")
+local_key = "lang"
 
 [node name="UiPanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("score_socket")]
 visible = false
@@ -293,4 +320,4 @@ show_percentage = false
 [connection signal="pressed" from="UI/GameOverPanel/VBoxContainer/ButtonStart" to="." method="restart_game"]
 [connection signal="pressed" from="UI/GameWin/VBoxContainer/ButtonStart" to="." method="restart_game"]
 [connection signal="pressed" from="UI/StartGamePanel/VBoxContainer/ButtonStart" to="." method="start_game"]
-[connection signal="pressed" from="UI/StartGamePanel/VBoxContainer/ButtonTest" to="." method="change_mode"]
+[connection signal="pressed" from="UI/StartGamePanel/VBoxContainer/ButtonLang" to="UI/StartGamePanel/VBoxContainer/ButtonLang" method="change_language"]
