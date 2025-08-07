@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://bohfaj3g5nasr"]
+
+[ext_resource type="Script" uid="uid://bl00dj6cvd7sy" path="res://core/level_info.gd" id="1_cw5ig"]
+[ext_resource type="PackedScene" uid="uid://dgq1g3d3xvpjf" path="res://nodes/level_packed_1.tscn" id="1_x407s"]
+
+[resource]
+script = ExtResource("1_cw5ig")
+max_score = 200
+level_scene = ExtResource("1_x407s")
+metadata/_custom_type_script = "uid://bl00dj6cvd7sy"

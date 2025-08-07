@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var level_pks: Array[PackedScene]
+@export var level_pks: LevelDatabase
 @export var ui_panel: Container
 @export var hero_pk: PackedScene
 @export var hero_socket: Node2D
@@ -25,8 +25,8 @@ func _ready() -> void:
 	restart_game()
 
 func _generate_new_level():
-	if level_index >= level_pks.size(): return
-	var level = level_pks[level_index].instantiate()
+	if level_index >= level_pks.level_count: return
+	var level = level_pks.level_data[level_index].level_scene.instantiate()
 	level_socket.add_child(level)
 	level.set_enemy(enemy)
 	level.position = last_point + Vector2(width, 0)
@@ -55,7 +55,7 @@ func restart_game():
 	GameDataGlobal.game_paused = true
 	GameDataGlobal.game_success = false
 	GameDataGlobal.score = 0
-	level_index = 0
+	level_index = 2
 	last_point = start_level.position
 	hero_pos = hero_spawn_at.position
 	game_win.hide()
