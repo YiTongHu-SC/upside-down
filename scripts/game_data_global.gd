@@ -1,7 +1,7 @@
 extends Node
 
-const WIN_GAME_SCORE = 500
-const MAX_SCORE = 2500
+var WIN_GAME_SCORE = 500
+var MAX_SCORE = 2500
 signal on_game_restart
 signal on_game_over
 signal on_upside_down

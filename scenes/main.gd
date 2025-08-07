@@ -55,6 +55,8 @@ func restart_game():
 	GameDataGlobal.game_paused = true
 	GameDataGlobal.game_success = false
 	GameDataGlobal.score = 0
+	GameDataGlobal.WIN_GAME_SCORE = level_pks.win_game_score
+	GameDataGlobal.MAX_SCORE = level_pks.get_total_max_score()
 	level_index = 2
 	last_point = start_level.position
 	hero_pos = hero_spawn_at.position

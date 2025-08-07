@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://dy7fx3doumpcr"]
 
-[ext_resource type="PackedScene" uid="uid://dgf0tsid2kgwn" path="res://nodes/level_packed_2.tscn" id="1_w2u4b"]
-[ext_resource type="Script" uid="uid://bl00dj6cvd7sy" path="res://core/level_info.gd" id="2_wr8vg"]
+[ext_resource type="PackedScene" uid="uid://dgf0tsid2kgwn" path="res://nodes/level_packed_2.tscn" id="1_sirt5"]
+[ext_resource type="Script" uid="uid://bl00dj6cvd7sy" path="res://core/level_info.gd" id="2_j7lyv"]
 
 [resource]
-script = ExtResource("2_wr8vg")
-max_score = 200
-level_scene = ExtResource("1_w2u4b")
+script = ExtResource("2_j7lyv")
+max_score = 0
+level_scene = ExtResource("1_sirt5")
 metadata/_custom_type_script = "uid://bl00dj6cvd7sy"
