@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://xk2hqrsam3si" path="res://tile_map/tile.tres" id="2_whcon"]
 [ext_resource type="PackedScene" uid="uid://61lhsksnt662" path="res://nodes/diamond.tscn" id="3_80og1"]
 [ext_resource type="PackedScene" uid="uid://b0jxi3mp4isot" path="res://nodes/game_success.tscn" id="4_80og1"]
-[ext_resource type="Texture2D" uid="uid://m5o8wvgq6e8o" path="res://images/House.png" id="6_hs61n"]
+[ext_resource type="Texture2D" uid="uid://cpou8rcrqqgiy" path="res://images/House.png" id="6_hs61n"]
 
 [node name="LevelPacked" type="Node2D"]
 use_parent_material = true
