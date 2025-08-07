@@ -33,15 +33,15 @@ func add_score(value: int, _pos: Vector2):
 func get_score_Level():
 	if score >= MAX_SCORE: ## Master
 		return 1
-	elif score >= 2000: # Kung Fu Master
+	elif score >= int(MAX_SCORE * 0.8): # Kung Fu Master
 		return 2
-	elif score >= 1500: # Expert
+	elif score >= int(MAX_SCORE * 0.6): # Expert
 		return 3
-	elif score >= 1000: # Disciple
+	elif score >= int(MAX_SCORE * 0.4): # Disciple
 		return 4
-	elif score >= 500: # Student
+	elif score >= int(MAX_SCORE * 0.2): # Student
 		return 5
-	elif score >= 0: # Beginner
+	elif score >= int(MAX_SCORE * 0): # Beginner
 		return 6
 	return 0
 
