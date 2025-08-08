@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelInfo" load_steps=3 format=3 uid="uid://2hveli26od2x"]
+
+[ext_resource type="PackedScene" uid="uid://csntlkbnmbjxu" path="res://Eat_Cat/level_packed_15.tscn" id="1_ewe0t"]
+[ext_resource type="Script" uid="uid://bl00dj6cvd7sy" path="res://core/level_info.gd" id="1_qba5i"]
+
+[resource]
+script = ExtResource("1_qba5i")
+max_score = 600
+level_scene = ExtResource("1_ewe0t")
+metadata/_custom_type_script = "uid://bl00dj6cvd7sy"
