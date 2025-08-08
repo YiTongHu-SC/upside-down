@@ -44,7 +44,7 @@ tile_set = ExtResource("2_3hd8v")
 [node name="Traps2" type="TileMapLayer" parent="Platform" groups=["trap"]]
 use_parent_material = true
 position = Vector2(0, 64)
-tile_map_data = PackedByteArray("AAAIAAcAEAAAAAAAAAAHAAcAEAAAAAAAAAAGAAcAEAAAAAAAAAAFAAcADQAAAAAAAAAJAAcAEAAAAAAAAAAKAAcADAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAIAAcAEAAAAAAAAAAHAAcAEAAAAAAAAAAGAAcAEAAAAAAAAAAFAAcADQAAAAAAAAAJAAcAEAAAAAAAAAAKAAcAEAAAAAAAAAA=")
 tile_set = ExtResource("2_3hd8v")
 
 [node name="Diamond" parent="." instance=ExtResource("3_73cyk")]
