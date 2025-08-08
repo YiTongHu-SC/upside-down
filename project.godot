@@ -64,7 +64,7 @@ DASH={
 [internationalization]
 
 locale/translation_remaps={
-"res://font/PaperHand/PaperHand-Regular-Black.ttf": PackedStringArray("res://font/问藏书房.ttf:zh")
+"res://font/PaperHand/PaperHand-Regular-Black.ttf": PackedStringArray("res://font/寒蝉书体·龙藏楷书_Medium.otf:zh")
 }
 locale/translations=PackedStringArray("res://localization/localization.en.translation", "res://localization/localization.zh.translation")
 locale/locale_filter_mode=1

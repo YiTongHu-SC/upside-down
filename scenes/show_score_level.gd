@@ -56,7 +56,7 @@ func update_level():
 			level_text = "[color=#ff8161]B[/color]"
 			level_desc = "level_B"
 		4:
-			level_text = "[color=#855cff]C[/color]"
+			level_text = "[color=#ff75bc]C[/color]"
 			level_desc = "level_C"
 		5:
 			level_text =  "[color=#7a9cff]D[/color]"

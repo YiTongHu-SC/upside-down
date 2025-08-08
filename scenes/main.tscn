@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b0spwfs1gscuy"]
+[gd_scene load_steps=37 format=3 uid="uid://b0spwfs1gscuy"]
 
 [ext_resource type="PackedScene" uid="uid://bs1xrjb27dvn0" path="res://nodes/hero.tscn" id="1_0wfyh"]
 [ext_resource type="Material" uid="uid://cyap16m41y5tj" path="res://scenes/scene_mat.tres" id="1_tbgi4"]
@@ -36,7 +36,10 @@ shader = ExtResource("9_85g3d")
 shader_parameter/upside_down = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
-bg_color = Color(0.11, 0.11, 0.11, 0.498039)
+bg_color = Color(0.11, 0.11, 0.11, 0.678431)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv21b"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 0.678431)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -112,6 +115,7 @@ script = ExtResource("8_choun")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="GameOverPanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("button_start")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -163,6 +167,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fv21b")
 script = ExtResource("23_yq6so")
 button_start = NodePath("VBoxContainer/ButtonStart")
 
@@ -202,7 +207,6 @@ script = ExtResource("25_fv21b")
 local_key = "restart_game"
 
 [node name="StartGamePanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("button_start")]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -268,6 +272,7 @@ script = ExtResource("25_fv21b")
 local_key = "lang"
 
 [node name="UiPanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("score_socket")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -335,14 +340,13 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 80
-text = "Level: "
+text = "Level"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("25_fv21b")
 local_key = "level"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-modulate = Color(0.6925, 1, 0.55, 1)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -352,7 +356,7 @@ theme_override_font_sizes/mono_font_size = 80
 theme_override_font_sizes/normal_font_size = 80
 theme_override_font_sizes/bold_font_size = 80
 bbcode_enabled = true
-text = "E"
+text = "[color=#ffff4d]S[/color]"
 fit_content = true
 
 [node name="Desc" type="Label" parent="UI/UiPanel/MarginContainer/VBoxContainer/VBoxContainer"]
