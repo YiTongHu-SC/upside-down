@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("2_4k5g7")
-max_score = 500
+max_score = 0
 level_scene = ExtResource("1_l7xkc")
 metadata/_custom_type_script = "uid://bl00dj6cvd7sy"
