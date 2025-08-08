@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b0spwfs1gscuy"]
+[gd_scene load_steps=47 format=3 uid="uid://b0spwfs1gscuy"]
 
 [ext_resource type="PackedScene" uid="uid://bs1xrjb27dvn0" path="res://nodes/hero.tscn" id="1_0wfyh"]
 [ext_resource type="Material" uid="uid://cyap16m41y5tj" path="res://scenes/scene_mat.tres" id="1_tbgi4"]
@@ -39,6 +39,7 @@
 [ext_resource type="Script" uid="uid://faeym7uu00ul" path="res://scenes/game_win.gd" id="23_yq6so"]
 [ext_resource type="Script" uid="uid://cqf2vw5t5todh" path="res://localization/localized_label.gd" id="25_fv21b"]
 [ext_resource type="Script" uid="uid://6yciwhiy4qg4" path="res://scenes/button_lang.gd" id="26_fv21b"]
+[ext_resource type="FontFile" uid="uid://b5g5xm5h0t1ux" path="res://font/问藏书房.ttf" id="36_5he1u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
 shader = ExtResource("9_85g3d")
@@ -273,6 +274,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("6_o6xl0")
+theme_override_fonts/font = ExtResource("36_5he1u")
 theme_override_font_sizes/font_size = 35
 text = "English"
 horizontal_alignment = 1
