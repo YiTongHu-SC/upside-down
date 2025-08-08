@@ -33,7 +33,7 @@ position = Vector2(0, -64)
 
 [node name="Platforms" type="TileMapLayer" parent="Platform"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAHAAIACgAAAAAAAAAGAAIACQAAAAAAAAAKAAcAAgAAAAAAAAALAAcAAQAAAAAAAAADAAIABQAAAAAAAAAEAAIACwAAAAAAAAAHAAMACwAAAAAAAAAGAAMABQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAHAAIACgAAAAAAAAAGAAIACQAAAAAAAAAKAAcAAgAAAAAAAAALAAcAAQAAAAAAAAADAAIABQAAAAAAAAAEAAIACwAAAAAAAAAHAAMACwAAAAAAAAAGAAMABQAAAAAAAAAEAAUACwAAAAAAAAAJAAUACwAAAAAAAAADAAUABQAAAAAAAAAIAAUABQAAAAAAAAADAAQAAgAAAAAAAAAIAAQAAgAAAAAAAAAEAAQAAQAAAAAAAAAJAAQAAQAAAAAAAAA=")
 tile_set = ExtResource("2_rkvgb")
 
 [node name="Traps" type="TileMapLayer" parent="Platform" groups=["trap"]]
@@ -44,7 +44,7 @@ tile_set = ExtResource("2_rkvgb")
 [node name="Traps2" type="TileMapLayer" parent="Platform" groups=["trap"]]
 use_parent_material = true
 position = Vector2(0, 64)
-tile_map_data = PackedByteArray("AAAIAAcADAAAAAAAAAAHAAcADQAAAAAAAAAEAAQAAQAAAAAAAAADAAQAAgAAAAAAAAADAAUABQAAAAAAAAAEAAUACwAAAAAAAAAJAAUACwAAAAAAAAAIAAUABQAAAAAAAAAJAAQAAQAAAAAAAAAIAAQAAgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAIAAcADAAAAAAAAAAHAAcADQAAAAAAAAA=")
 tile_set = ExtResource("2_rkvgb")
 
 [node name="Diamond" parent="." instance=ExtResource("3_1xoib")]
