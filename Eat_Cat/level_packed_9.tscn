@@ -33,6 +33,7 @@ position = Vector2(0, -64)
 
 [node name="Platforms" type="TileMapLayer" parent="Platform"]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAAOAAIACQAAAAAAAAAOAAMACQAAAAAAAAAOAAQACQAAAAAAAAAOAAUABQAAAAAAAAA=")
 tile_set = ExtResource("2_2owmr")
 
 [node name="Traps" type="TileMapLayer" parent="Platform" groups=["trap"]]
