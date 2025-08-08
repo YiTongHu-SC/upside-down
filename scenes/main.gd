@@ -56,7 +56,7 @@ func restart_game():
 	GameDataGlobal.game_success = false
 	GameDataGlobal.score = 0
 	GameDataGlobal.MAX_SCORE = level_pks.get_total_max_score()
-	GameDataGlobal.WIN_GAME_SCORE = int(GameDataGlobal.MAX_SCORE * 0.38 / 100) * 100
+	GameDataGlobal.WIN_GAME_SCORE = int(GameDataGlobal.MAX_SCORE * 0.3 / 100) * 100
 	GameDataGlobal.MAX_SCORE += GameDataGlobal.WIN_GAME_SCORE
 	print("MAX_SCORE:", GameDataGlobal.MAX_SCORE)
 	print("WIN_GAME_SCORE:", GameDataGlobal.WIN_GAME_SCORE)

@@ -1,5 +1,7 @@
 extends PanelContainer
 
+## 防止误触
+@export var delay = 0.8
 @export var button_start: Button
 func _ready():
 	button_start.grab_focus()
@@ -19,4 +21,11 @@ func _input(event):
 				get_viewport().set_input_as_handled()
 
 func game_success():
+	button_start.disabled = true
+	set_process_input(false)
+	var timer = get_tree().create_timer(delay)
+	await timer.timeout
+	# Re-enable input processin
+	button_start.disabled = false
+	set_process_input(true)
 	button_start.grab_focus()

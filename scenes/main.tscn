@@ -171,7 +171,6 @@ script = ExtResource("25_fv21b")
 local_key = "restart_game"
 
 [node name="GameWin" type="PanelContainer" parent="UI" node_paths=PackedStringArray("button_start")]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -217,6 +216,7 @@ script = ExtResource("25_fv21b")
 local_key = "restart_game"
 
 [node name="StartGamePanel" type="PanelContainer" parent="UI" node_paths=PackedStringArray("button_start")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

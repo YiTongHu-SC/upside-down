@@ -12,10 +12,15 @@ func _ready() -> void:
 
 func trigger_game_over():
 	show()
-	button_start.grab_focus()
 	GameDataGlobal.game_paused = true
+	button_start.disabled = true
+	set_process_input(false)
 	var timer = get_tree().create_timer(delay)
 	await timer.timeout
+	# Re-enable input processing after delay
+	button_start.disabled = false
+	set_process_input(true)
+	button_start.grab_focus()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 1, delay)
 
