@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://b30du8etsxkui"]
+
+[ext_resource type="Script" uid="uid://b1rtqo10ykjc2" path="res://scenes/splash.gd" id="1_86pdq"]
+[ext_resource type="Texture2D" uid="uid://cmdaskh1ihkbc" path="res://images/LogoSplash1k.png" id="2_10vqf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86pdq"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="Animation" id="Animation_10vqf"]
+resource_name = "splash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4rrho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5svwm"]
+_data = {
+&"RESET": SubResource("Animation_4rrho"),
+&"splash": SubResource("Animation_10vqf")
+}
+
+[node name="Splash" type="Node2D"]
+script = ExtResource("1_86pdq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_86pdq")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_10vqf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/PanelContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_5svwm")
+}
